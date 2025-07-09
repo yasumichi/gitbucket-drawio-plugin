@@ -1,5 +1,5 @@
 name := "gitbucket-drawio-plugin"
 organization := "io.github.gitbucket"
-version := "0.1.0"
+version := "0.2.0"
 scalaVersion := "2.13.7"
-gitbucketVersion := "4.36.2"
+gitbucketVersion := "4.43.0"

@@ -24,3 +24,9 @@ project/project/
 .ensime_cache/
 
 .bsp/
+
+# vscode
+.vscode
+.metals
+.bloop
+project/metals.sbt

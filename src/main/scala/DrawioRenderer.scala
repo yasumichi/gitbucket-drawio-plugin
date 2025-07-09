@@ -14,13 +14,14 @@ class DrawioRenderer extends Renderer {
 
   def toHtml(content: String)(implicit context: Context): String = {
     val path = context.baseUrl
-    val data = content.replaceAll("<.+?>", "")
+//    val data = content.replaceAll("<.+?>", "")
+    val data = content.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;")
 
     s"""
        |<link rel="stylesheet" type="text/css" href="$path/plugin-assets/drawio/drawio-renderer.css">
        |<script src="$path/plugin-assets/drawio/viewer.min.js"></script>
-       |<script src="https://laingsimon.github.io/render-diagram/drawio-renderer.js"></script>
-       |<div class="drawio-diagram" data-diagram-data="$data"></div>
+       |<script src="$path/plugin-assets/drawio/drawio-renderer.js"></script>
+       |<div class="mxgraph" data-diagram-data="$data"></div>
        |""".stripMargin
 
   }

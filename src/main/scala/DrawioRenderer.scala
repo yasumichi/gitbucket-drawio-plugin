@@ -14,8 +14,12 @@ class DrawioRenderer extends Renderer {
 
   def toHtml(content: String)(implicit context: Context): String = {
     val path = context.baseUrl
-//    val data = content.replaceAll("<.+?>", "")
-    val data = content.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;")
+    val data = content.replaceAll("&", "&amp;")
+                      .replaceAll("'", "&#x27;")
+                      .replaceAll("`", "&#x60;")
+                      .replaceAll("\"", "&quot;")
+                      .replaceAll("<", "&lt;")
+                      .replaceAll(">", "&gt;")
 
     s"""
        |<link rel="stylesheet" type="text/css" href="$path/plugin-assets/drawio/drawio-renderer.css">

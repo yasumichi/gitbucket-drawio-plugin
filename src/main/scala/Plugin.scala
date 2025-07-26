@@ -1,6 +1,8 @@
 import javax.servlet.ServletContext
 
+import gitbucket.core.plugin.Link
 import gitbucket.core.plugin.PluginRegistry
+import gitbucket.core.controller.Context
 import gitbucket.core.service.SystemSettingsService
 import gitbucket.core.service.SystemSettingsService.SystemSettings
 import io.github.gitbucket.solidbase.model.Version
@@ -26,6 +28,13 @@ class Plugin extends gitbucket.core.plugin.Plugin {
     super.initialize(registry, context, settings)
   }
 
+  override val controllers = Seq(
+    "/*" -> new DrawioController
+  )
+
+  override val systemSettingMenus: Seq[(Context) => Option[Link]] = Seq(
+    (ctx: Context) => Some(Link("draw.io","draw.io","admin/drawio"))
+  )
   override def shutdown(registry: PluginRegistry, context: ServletContext, settings: SystemSettings): Unit = {
     renderer.foreach(r => r.shutdown())
   }

@@ -16,6 +16,7 @@ class Plugin extends gitbucket.core.plugin.Plugin {
   override val versions: List[Version] = List(
     new Version("0.1.0"),
     new Version("0.2.0"),
+    new Version("0.2.1")
   )
 
   private[this] var renderer: Option[DrawioRenderer] = None

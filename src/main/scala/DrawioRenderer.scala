@@ -36,6 +36,8 @@ class DrawioRenderer extends Renderer with DrawioSettingsService {
        |<link rel="stylesheet" type="text/css" href="$path/plugin-assets/drawio/drawio-renderer.css">
        |<script>
        |window.DRAWIO_BASE_URL = '$baseUrl';
+       |window.DRAWIO_LIGHTBOX_URL = '$baseUrl';
+       |window.DRAWIO_VIEWER_URL = '$baseUrl';
        |window.DRAW_MATH_URL = '$baseUrl' + 'math/es5';
        |</script>
        |<script src="$viewer"></script>

@@ -1,4 +1,4 @@
-# gitbucket-drawio-plugin
+# gitbucket-drawio-plugin (Forked version)
 
 A GitBucket plugin for rendering Draw.io file.
 
@@ -28,8 +28,13 @@ for deployment.
 
 This plugin process files with `.drawio` extension.
 
+## Settings
+
+You can modify it to use self-hosted draw.io.
+
 ## Version
 
 Plugin version|GitBucket version
 :---|:---
 0.1.x |4.36.x -
+0.2.x |4.36.x -

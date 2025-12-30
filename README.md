@@ -32,6 +32,8 @@ This plugin process files with `.drawio` extension.
 
 You can modify it to use self-hosted draw.io.
 
+<img width="1022" height="371" alt="draw.io settings" src="https://github.com/user-attachments/assets/28448405-6d44-40c0-b2c4-1e8ea9a68cc7" />
+
 ## Version
 
 Plugin version|GitBucket version

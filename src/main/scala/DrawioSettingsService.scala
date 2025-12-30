@@ -8,25 +8,25 @@ trait DrawioSettingsService {
 
   val DrawioConf = new File(GitBucketHome, "drawio.conf")
 
-  def  saveDrawioSettings(settings: DrawioSettings): Unit =
-    defining(new java.util.Properties()) { props =>
-      props.setProperty(DrawioBaseUrl, settings.DrawioBaseUrl)
-      Using.resource(new java.io.FileOutputStream(DrawioConf)) { out =>
-        props.store(out, null)
-      }
+  def  saveDrawioSettings(settings: DrawioSettings): Unit = {
+    val props = new java.util.Properties()
+    props.setProperty(DrawioBaseUrl, settings.DrawioBaseUrl)
+    Using.resource(new java.io.FileOutputStream(DrawioConf)) { out =>
+      props.store(out, null)
     }
+  }
 
-  def loadDrawioSettings(): DrawioSettings =
-    defining(new java.util.Properties()) { props =>
-      if (DrawioConf.exists) {
-        Using.resource(new java.io.FileInputStream(DrawioConf)) { in =>
-          props.load(in)
-        }
+  def loadDrawioSettings(): DrawioSettings = {
+    val props = new java.util.Properties()
+    if (DrawioConf.exists) {
+      Using.resource(new java.io.FileInputStream(DrawioConf)) { in =>
+        props.load(in)
       }
-      DrawioSettings(
-        getValue[String](props, DrawioBaseUrl, "")  
-      )
     }
+    DrawioSettings(
+      getValue[String](props, DrawioBaseUrl, "")  
+    )
+  }
 }
 
 object DrawioSettingsService {
@@ -38,25 +38,25 @@ object DrawioSettingsService {
 
   private def getValue[A: ClassTag](props: java.util.Properties,
                                     key: String,
-                                    default: A): A =
-    defining(props.getProperty(key)) { value =>
-      if (value == null || value.isEmpty) default
-      else convertType(value).asInstanceOf[A]
-    }
+                                    default: A): A = {
+    val value = props.getProperty(key)
+    if (value == null || value.isEmpty) default
+    else convertType(value).asInstanceOf[A]
+  }
 
   private def getOptionValue[A: ClassTag](props: java.util.Properties,
                                           key: String,
-                                          default: Option[A]): Option[A] =
-    defining(props.getProperty(key)) { value =>
-      if (value == null || value.isEmpty) default
-      else Some(convertType(value)).asInstanceOf[Option[A]]
-    }
+                                          default: Option[A]): Option[A] = {
+    val value =props.getProperty(key)
+    if (value == null || value.isEmpty) default
+    else Some(convertType(value)).asInstanceOf[Option[A]]
+  }
 
-  private def convertType[A: ClassTag](value: String) =
-    defining(implicitly[ClassTag[A]].runtimeClass) { c =>
-      if (c == classOf[Boolean]) value.toBoolean
-      else if (c == classOf[Int]) value.toInt
-      else value
-    }
+  private def convertType[A: ClassTag](value: String) = {
+    val c = implicitly[ClassTag[A]].runtimeClass
+    if (c == classOf[Boolean]) value.toBoolean
+    else if (c == classOf[Int]) value.toInt
+    else value
+  }
 }
 
